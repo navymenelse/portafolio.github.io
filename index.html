@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page Increíble</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">MiProducto</a>
+            <ul>
+                <li><a href="#hero">Inicio</a></li>
+                <li><a href="#features">Características</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Sección Héroe -->
+        <section id="hero">
+            <div class="hero-content container">
+                <h1>La Solución que Estabas Esperando</h1>
+                <p>Simplifica tu vida y aumenta tu productividad con nuestra innovadora herramienta.</p>
+                <button id="cta-button" class="cta-button">¡Contáctanos!</button>
+            </div>
+        </section>
+
+        <!-- Sección Características -->
+        <section id="features" class="container">
+            <h2>Características Principales</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Rápido y Eficiente</h3>
+                    <p>Optimizado para ofrecer la máxima velocidad sin sacrificar la calidad.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Diseño Intuitivo</h3>
+                    <p>Una interfaz amigable que te encantará usar desde el primer día.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Seguridad Garantizada</h3>
+                    <p>Tus datos están protegidos con los más altos estándares de seguridad.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Contacto -->
+        <section id="contact">
+            <div class="container">
+                <h2>¿Interesado? Hablemos</h2>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Nombre:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensaje:</label>
+                        <textarea id="message" name="message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Enviar Mensaje</button>
+                </form>
+                <p id="form-status"></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 MiProducto. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
