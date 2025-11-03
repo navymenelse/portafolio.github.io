@@ -49,13 +49,16 @@ header nav {
 }
 
 .logo {
-    color: var(--primary-color);
-    font-size: 1.5rem;
-    font-weight: bold;
     text-decoration: none;
+    display: flex;
+    align-items: center;
 }
 
-header ul {
+.logo img {
+    height: 40px; /* Puedes ajustar esta altura según el tamaño de tu logo */
+}
+
+header .nav-menu {
     list-style: none;
     display: flex;
     gap: 20px;
@@ -70,6 +73,13 @@ header a {
 
 header a:hover {
     color: var(--primary-color);
+}
+
+/* Botón de Hamburguesa - Oculto por defecto en escritorio */
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
 }
 
 /* --- Botón CTA (Call to Action) --- */
@@ -92,7 +102,7 @@ header a:hover {
 
 /* --- Sección Héroe --- */
 #hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=2070') no-repeat center center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./images/hero-background.jpg') no-repeat center center/cover;
     color: var(--light-color);
     height: 80vh;
     display: flex;
@@ -215,16 +225,70 @@ footer {
 
 /* --- Media Queries para Responsividad --- */
 @media (max-width: 768px) {
+    /* --- Header y Navegación Móvil --- */
+    .nav-toggle {
+        display: block;
+        cursor: pointer;
+        position: relative;
+        width: 30px;
+        height: 20px;
+        z-index: 1010; /* Asegura que esté sobre otros elementos */
+    }
+
+    .nav-toggle::before,
+    .nav-toggle::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: var(--text-color);
+        transition: transform 0.3s ease, top 0.3s ease;
+    }
+
+    .nav-toggle::before {
+        top: 0;
+    }
+
+    .nav-toggle::after {
+        top: 100%;
+        transform: translateY(-100%);
+    }
+
+    .nav-menu {
+        display: none; /* Oculto por defecto */
+        position: absolute;
+        top: 100%; /* Justo debajo del header */
+        left: 0;
+        width: 100%;
+        background-color: var(--light-color);
+        flex-direction: column;
+        padding: 20px 0;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .nav-menu_visible {
+        display: flex; /* Se muestra al hacer clic */
+    }
+
+    /* Animación del ícono a una 'X' */
+    .nav-menu_visible + .nav-toggle::before {
+        transform: rotate(45deg);
+        top: 50%;
+    }
+
+    .nav-menu_visible + .nav-toggle::after {
+        transform: rotate(-45deg);
+        top: 50%;
+    }
+
+    .nav-menu li {
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    /* --- Otros ajustes para móvil --- */
     #hero h1 {
         font-size: 2.5rem;
-    }
-
-    header nav {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    header ul {
-        padding-top: 10px;
     }
 }

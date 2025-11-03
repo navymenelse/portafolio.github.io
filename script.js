@@ -19,25 +19,48 @@ document.addEventListener('DOMContentLoaded', function() {
         contactForm.addEventListener('submit', function(event) {
             event.preventDefault(); // Prevenir el envío real del formulario
 
-            // Simulación de envío
+            const formData = new FormData(contactForm);
+            const formAction = "https://formspree.io/f/mqagvbna"; // <-- PEGA TU URL DE FORMSPREE AQUÍ
+
             formStatus.textContent = 'Enviando...';
             formStatus.style.color = 'blue';
 
-            setTimeout(() => {
-                // Limpiar el formulario
-                contactForm.reset();
-                
-                // Mostrar mensaje de éxito
-                formStatus.textContent = '¡Gracias por tu mensaje! Te contactaremos pronto.';
-                formStatus.style.color = 'green';
-
-                // Ocultar el mensaje después de 5 segundos
-                setTimeout(() => {
-                    formStatus.textContent = '';
-                }, 5000);
-
-            }, 1500); // Simular un retraso de red de 1.5 segundos
+            fetch(formAction, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    formStatus.textContent = '¡Gracias por tu mensaje! Te contactaremos pronto.';
+                    formStatus.style.color = 'green';
+                    contactForm.reset();
+                } else {
+                    formStatus.textContent = 'Hubo un error al enviar el mensaje. Inténtalo de nuevo.';
+                    formStatus.style.color = 'red';
+                }
+            }).catch(error => {
+                formStatus.textContent = 'Hubo un error de red. Por favor, revisa tu conexión.';
+                formStatus.style.color = 'red';
+            }).finally(() => {
+                // Opcional: Ocultar el mensaje después de 5 segundos
+                setTimeout(() => { formStatus.textContent = ''; }, 5000);
+            });
         });
     }
 
+    // 3. Funcionalidad del menú de hamburguesa
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('nav-menu_visible');
+
+            // Accesibilidad: Cambiar el aria-label dependiendo si el menú está visible o no
+            const isVisible = navMenu.classList.contains('nav-menu_visible');
+            navToggle.setAttribute('aria-label', isVisible ? 'Cerrar menú' : 'Abrir menú');
+        });
+    }
 });
