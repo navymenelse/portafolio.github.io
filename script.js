@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
             event.preventDefault(); // Prevenir el envío real del formulario
 
             const formData = new FormData(contactForm);
-            const formAction = "https://formspree.io/f/mqagvbna"; // <-- PEGA TU URL DE FORMSPREE AQUÍ
+            const formAction = contactForm.getAttribute('action');
 
             formStatus.textContent = 'Enviando...';
             formStatus.style.color = 'blue';
